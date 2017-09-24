@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /
+
+# Общее
+RewriteRule ^index.html$ index.php [L]
