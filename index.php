@@ -9,11 +9,6 @@ ini_set('display_startup_errors', TRUE);
 # Старт буфера
 @ob_start();
 
-# Вычисляем юзверя
-$user   = $_SESSION['user']; // Получаем имя,
-$userid = $_SESSION['user_id']; // а здесь ID
-$admin  = $_SESSION['part']; // Привилегия юзверя
-
 # Автоподгрузка классов
 function __autoload( $name ) { include( "./class/class_" . $name . ".php" ); }
 
@@ -28,10 +23,10 @@ $db = new db($config->HostDB, $config->UserDB, $config->PassDB, $config->BaseDB)
 
 # Заголовки
 $_OPTIMIZATION = array();
-$_OPTIMIZATION["title"] = "Блог";
-$_OPTIMIZATION["description"] = "Блог для softgroup";
-$_OPTIMIZATION["keywords"] = "блог";
-$_OPTIMIZATION["author"] = "Вячеслав Окара (http://studioez.com.ua/)";
+$_OPTIMIZATION["title"] = "Гостевая книга";
+$_OPTIMIZATION["description"] = "Гостевая книга для Softgroup";
+$_OPTIMIZATION["keywords"] = "гостевая, книга, гостевая книга";
+$_OPTIMIZATION["author"] = "Рыжий Александр";
 
 # Ставим защиту на запросы от "кулхацкеров"
 function check_text($text) {
