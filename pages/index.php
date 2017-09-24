@@ -48,7 +48,27 @@
 				type: 'post',
 				data: $(this).serialize(),
 				success: function(data) {
-					console.log(data);
+					var info = $.parseJSON(data);
+					if( info.status == 'success' ) {
+						$('table').append(
+							'<tr>' +
+								'<td>' + 
+									info.name +
+								'</td>' +
+								'<td>' + 
+									info.email + 
+								'</td>' +
+								'<td>' + 
+									info.message + 
+								'</td>' +
+								'<td>' + 
+									info.date +
+								'</td>' + 
+							'</tr>'
+						);
+					}else{
+						alert('Ошибка ввода. Попробуйте еще раз!');
+					}
 				}
 			})
 			return false;

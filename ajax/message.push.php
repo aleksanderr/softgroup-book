@@ -28,7 +28,7 @@
 
 		$db->Query("select `id` from users where email = '$email' ");
 		$search_user_id = $db->FetchRow();
-		
+
 		if( $search_user_id > 0 ) { 
 			$user_id = $search_user_id;
 		}else{
@@ -36,8 +36,14 @@
 			$user_id = $db->LastInsert();
 		}
 
-		$db->Query("insert into `messages` (user_id, message, date) values ('" . $user_id . "', '$message', '" . time() . "') ");
-		echo '{"status":"success"}';
+		$time = time();
+
+		$db->Query("insert into `messages` (user_id, message, date) values ('$user_id', '$message', '$time') ");
+
+		$db->Query("select name, email from users where id = $user_id");
+		$user_info = $db->FetchArray();
+
+		echo '{"status":"success", "name":"'.$user_info['name'].'", "email":"'.$user_info['email'].'", "message":"'.$message.'", "date":"'.date( 'd-m-Y, H:i:s', $time ).'"}';
 
 	}
 
